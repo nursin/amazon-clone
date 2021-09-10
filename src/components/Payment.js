@@ -4,10 +4,16 @@ import '../Payment.css'
 import { useStateValue } from '../redux/StateProvider'
 import Checkout from './Checkout';
 import CheckoutProduct from './CheckoutProduct';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+
+
 
 function Payment() {
 
   const [{ basket, user }, dispatch] = useStateValue();
+
+  const stripe = useStripe();
+  const elements = useElements();
 
   return (
     <div className='payment'>
