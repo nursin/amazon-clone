@@ -68,3 +68,7 @@
   margin-right: 10px;
 
 }
+
+.header__nav > * {
+  text-decoration: none;
+}

@@ -7,9 +7,10 @@ import { useStateValue } from './redux/StateProvider';
 import Login from './components/Login';
 import { auth } from './firebase';
 import React, { useEffect } from 'react';
+import Payment from './components/Payment';
 
 function App() {
-  const [{}, dispatch] = useStateValue();
+  const [{ }, dispatch] = useStateValue();
 
   useEffect(() => {
     // will only run once when the app component loads
@@ -43,6 +44,10 @@ function App() {
           <Route path='/checkout'>
             <Header />
             <Checkout />
+          </Route>
+          <Route path='/payment'>
+            <Header />
+            <Payment />
           </Route>
           <Route path='/'>
             <Header />
