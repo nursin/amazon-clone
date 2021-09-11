@@ -9,6 +9,7 @@ import { getBasketTotal } from '../redux/reducer';
 import CurrencyFormat from 'react-currency-format';
 import axios from '../axios'
 import { useHistory } from 'react-router';
+import { db } from '../firebase';
 
 function Payment() {
   const history = useHistory();
@@ -50,6 +51,18 @@ function Payment() {
       }
     }).then(({ paymentIntent }) => {
       //paymentintent = payment confirmation
+
+      db
+        .collection('users')
+        .doc(user?.uid)
+        .collection('orders')
+        .doc(paymentIntent.id)
+        .set({
+          basket: basket,
+          amount: paymentIntent.amount,
+          created: paymentIntent.created
+        })
+
       setSucceeded(true);
       setError(null);
       setProcessing(false);
