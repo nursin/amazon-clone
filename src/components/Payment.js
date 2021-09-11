@@ -37,6 +37,8 @@ function Payment() {
     getClientSecret();
   }, [basket])
 
+  console.log('The secret is >>>', clientSecret)
+
   const handleSubmit = async (e) => {
     // do all the fancy stripe stuff
     e.preventDefault();
@@ -51,6 +53,10 @@ function Payment() {
       setSucceeded(true);
       setError(null);
       setProcessing(false);
+
+      dispatch({
+        type: 'EMPTY_BASKET'
+      })
 
       history.replace('/orders')
     })

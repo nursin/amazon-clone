@@ -22,7 +22,7 @@ const reducer = (state, action) => {
       );
       let newBasket = [...state.basket];
 
-      if(index >= 0) {
+      if (index >= 0) {
         newBasket.splice(index, 1);
       } else {
         console.warn(`Cant remove product (id: ${action.id}) as its not in basket!`)
@@ -37,6 +37,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         user: action.user
+      }
+    case 'EMPTY_BASKET':
+      return {
+        ...state,
+        basket: []
       }
     default:
       return state;
